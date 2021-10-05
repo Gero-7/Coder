@@ -1,34 +1,34 @@
-console.log("Bienvenidos a Capullo");
+console.log("Bienvenidos a Salado");
 //Prompt
 let nombreCompleto = prompt("Ingrese su Nombre Completo");
-alert("Bienvenido a la Concesionaria de CAPUSHO!\n" + nombreCompleto);
+alert("Bienvenido a la Concesionaria de Salado!\n" + nombreCompleto);
 
 // Arrays
 let autos = [];
 
 //Traemos la info del JSON
-$.get("autos.json", function (datos, estado) {
-  //llamamos a la direccion del JSON
-  console.log(datos); //nos fiajmos si esta el Array creado, si aparecen los Cursos, es porque hicimos bien la llamada
-  console.log(estado); //Si esta bien la llamda del JSON, saldrá success como estado
-  if (estado == "success") {
-    // Si el estado es exitoso
-    for (const listaJson of datos) {
-      //guardamos los datos, que son los cursos en la variable listaJson
-      autos.push(listaJson); //hacemos un Push al array producto
+$.get("autos.json", function(datos, estado) {
+    //llamamos a la direccion del JSON
+    console.log(datos); //nos fiajmos si esta el Array creado, si aparecen los Cursos, es porque hicimos bien la llamada
+    console.log(estado); //Si esta bien la llamda del JSON, saldrá success como estado
+    if (estado == "success") {
+        // Si el estado es exitoso
+        for (const listaJson of datos) {
+            //guardamos los datos, que son los cursos en la variable listaJson
+            autos.push(listaJson); //hacemos un Push al array producto
+        }
     }
-  }
-  //console.log(datos);//sirve para ver si vamos por buen camino!
+    //console.log(datos);//sirve para ver si vamos por buen camino!
 
-  //INTERFAZ DE PRODUCTOS CON UNA FUNCION
-  interfaz(autos, "#productosContenedor"); //agreamos datos al 1er parametro y listo! :D
+    //INTERFAZ DE PRODUCTOS CON UNA FUNCION
+    interfaz(autos, "#productosContenedor"); //agreamos datos al 1er parametro y listo! :D
 });
 
 //Interfaz DOM Jquery
 function interfaz(autos, id) {
-  $(id).empty();
-  for (const coches of autos) {
-    $(id).append(`<div class="card" style="width: 300px;">
+    $(id).empty();
+    for (const coches of autos) {
+        $(id).append(`<div class="card" style="width: 300px;">
                     <img src="${coches.imagen}" class="card-img-top img-flinterfazd" style="width: 300px;" alt="${coches.marca}  ">
                     <div class="card-body">
                     <h3 class="card-title">${coches.marca}</h3>
@@ -45,5 +45,5 @@ function interfaz(autos, id) {
   <a href="#" id='${coches.id}' class="btn btn-success btn-compra">Comprar</a>
   </div>
 </div>`);
-  }
+    }
 }

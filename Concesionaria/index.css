@@ -1,0 +1,5 @@
+#productosContenedor {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 80px;
+}

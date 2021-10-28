@@ -1,32 +1,166 @@
-console.log("Bienvenidos a Capullo");
+window.onload = function () {
 
-//Prompt
-let nombreCompleto = prompt("Ingrese su Nombre Completo");
-alert("Bienvenido a la Concesionaria de CAPUSHO!\n" + nombreCompleto);
+    total = 0;
+    precio = 0;
 
-//LOCALSTORAGE
-localStorage.setItem("Nombre Completo", nombreCompleto);
+    // CARRITO
+    const cajaCarrito = document.querySelector('.cajaCarrito');
 
-//DOM
-let mostrarNombre = document.createElement("div");
-mostrarNombre.innerHTML = nombreCompleto;
-document.getElementById("mostrarNombre").appendChild(mostrarNombre);
+    // abrir carrito 
+    $('.iconCarrito').on('click', function () {
+        cajaCarrito.classList.add('active');
+    });
 
-// Evento
-document.addEventListener("click", function () {
-  document.getElementById("demo").innerHTML = `<div class="card text-center">
-                                                <div class="card-header">Autos</div>
-  <div class="card-body">
-    <h5 class="card-title">Nuevo Toyota</h5>
-    <p class="card-text">Nueva motorización 2.0L Dynamic Force con 170 CV y 200 NM.</p>
-  </div>
-  <div class="card-footer text-muted">
-    17 days ago
-  </div>
-</div>`;
+    // cerrar carrito 
+    $('.fa-close').on('click', function () {
+        cajaCarrito.classList.remove('active');
+    });
+
+    // agregar mensaje d principio 
+    $(".servicios").prepend("<h2> Nuestros Autos: </h2>");
+
+    // LOCAL STORAGE 
+    const agrCarritoBtn = document.getElementsByClassName('agrCarrito');
+    let items = [];
+
+    for (let i = 0; i < agrCarritoBtn.length; i++) {
+
+        agrCarritoBtn[i].addEventListener("click", function (e) {
+            if (typeof (Storage) !== 'undefined') {
+                let item = {
+                    id: i + 1,
+                    nombre: e.target.parentElement.children[0].textContent,
+                    precio: e.target.parentElement.children[1].children[0].textContent,
+                    num: 1,
+                    precioTotal: total
+                };
+                if (JSON.parse(localStorage.getItem('items')) === null) {
+                    items.push(item);
+                    localStorage.setItem("items", JSON.stringify(items));
+                    window.location.reload();
+                } else {
+                    const localItems = JSON.parse(localStorage.getItem("items"));
+                    localItems.map(data => {
+                        if (item.id == data.id) {
+                            item.num = data.num + 1;
+                        } else {
+                            items.push(data);
+                        }
+                    });
+                    items.push(item);
+                    localStorage.setItem('items', JSON.stringify(items))
+                    window.location.reload();
+                }
+            } else {
+                console.log('NO FUNCIONA');
+            }
+        });
+    }
+
+    // agregar al carrito 
+    const iconCarritoP = document.querySelector('.iconCarrito p');
+    let num = 0;
+    JSON.parse(localStorage.getItem('items')).map(data => {
+        num = num + data.num;
+    });
+
+    iconCarritoP.innerHTML = num;
+
+    // agregar al carrito tabla 
+    const cajaCarritoTabla = cajaCarrito.querySelector('table');
+    let datosTabla = '';
+    datosTabla += '<tr><th class="tituloTabla">Id</th><th class="tituloTabla">Nombre</th><th class="tituloTabla">Cantidad</th><th class="tituloTabla">Precio</th><th class="tituloTabla"></th></tr>';
+    if (JSON.parse(localStorage.getItem('items'))[0] == null) {
+        // no entiendo por que esto no funciona????
+        datosTabla += '<tr><th> No agregó ningún item </th></tr>'
+    } else {
+        JSON.parse(localStorage.getItem('items')).map(data => {
+            datosTabla += '<tr><th>' + data.id + '</th><th>' + data.nombre + '</th><th>' + data.num + '</th><th>$' + (data.precio * data.num) + '</th><th class="btnEliminar"><a href="#" onclick=eliminar(this);>Eliminar</a></th></tr>';
+            // mostrar 
+            precio = parseInt(data.precio) * parseInt(data.num);
+            total = total + precio;
+            console.log(total);
+        });
+    }
+    let cajaMostrarTotal = document.getElementById("total");
+
+    // mostrar tabla y total 
+    cajaMostrarTotal.textContent = (total);
+    cajaCarritoTabla.innerHTML = datosTabla;
+}
+
+// eliminar del carrito 
+function eliminar(e) {
+    let items = [];
+    JSON.parse(localStorage.getItem('items')).map(data => {
+        if (data.id != e.parentElement.parentElement.children[0].textContent) {
+            items.push(data);
+        }
+    });
+    localStorage.setItem('items', JSON.stringify(items));
+    window.location.reload();
+};
+
+// ANIMACIONES 
+$("#contenedorAbajo").hide();
+$("#ocultar").hide();
+
+// mostrar caja 
+$('#mostrar').click(function () {
+    $('#contenedorAbajo').css("background-color", "black")
+        .slideDown(1000)
+    $("#ocultar").fadeIn(1000);
 });
 
-// Arrays
+// cerrar caja 
+$('#ocultar').click(function () {
+    $('#contenedorAbajo')
+        .slideUp(1000)
+    $("#ocultar").fadeOut(1000);
+});
+
+// animacion concatenada 
+$(".contenidoverMas").hide();
+
+$('#verMas').click(function () {
+    $('.contenidoverMas')
+        .slideDown(1000)
+        .delay(3000)
+        .slideUp(1000);
+});
+
+// galeria (slider)
+$(document).ready(function () {
+    var x = 0;
+    // cambiar img 
+    $('.btn-next').click(function () {
+
+        x = (x <= 300) ? (x + 100) : 0;
+        $('figure').css('left', -x + '%');
+    });
+
+    // ir atras 
+    $('.btn-prev').click(function () {
+
+        x = (x >= 100) ? (x - 100) : 400;
+        $('figure').css('left', -x + '%');
+    });
+});
+
+
+// AJAX 
+
+$(document).ready(function () {
+
+    $('.comprar').click(function () {
+        $.get("datos.txt", function (data) {
+            $("#ajax").html(data);
+        });
+    });
+});
+
+//Auto
+// Dom
 let autos = [];
 
 //Traemos la info del JSON
@@ -51,22 +185,16 @@ $.get("autos.json", function (datos, estado) {
 function interfaz(autos, id) {
   $(id).empty();
   for (const coches of autos) {
-    $(id).append(`<div class="card" style="width: 300px;">
-                    <img src="${coches.imagen}" class="card-img-top img-flinterfazd" style="width: 300px;" alt="${coches.marca}  ">
-                    <div class="card-body">
-                    <h3 class="card-title">${coches.marca}</h3>
-                    <h6 class="card-title">${coches.modelo}</h6>
-                    <p class="card-text">$${coches.precio}</p>
-                    </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><strong>Color:</strong> ${coches.color}</li>
-    <li class="list-group-item"><strong>Año:</strong> ${coches.anio}</li>
-    <li class="list-group-item"><strong>Patente:</strong> ${coches.patente}</li>
-    <li class="list-group-item"><strong>KM:</strong> ${coches.km}</li>
-  </ul>
-  <div class="card-body">
-  <a href="#" id='${coches.id}' class="btn btn-success btn-compra">Comprar</a>
-  </div>
-</div>`);
+    $(id).append(`<div class="itemsCaja">
+    <div class="item">
+      <img src="${coches.imagen}" alt="" />
+      <div class="itemInfo">
+        <h1>${coches.marca}</h1>
+        <h3>${coches.modelo}</h3>
+        <p>$<span>${coches.precio}</span></p>
+        <a href="#" title="agregar" class="agrCarrito">Agregar</a>
+      </div>
+    </div>
+  </div>`);
   }
 }

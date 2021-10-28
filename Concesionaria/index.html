@@ -1,63 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>Concesionaria Capullo</title>
+  <meta charset="utf-8" />
+  <title>Consecionaria Capullo</title>
+  <!-- FAVICON  -->
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+  <!-- LINK CSS  -->
+  <link rel="stylesheet" href="index.css" />
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Concesionaria Capullo</a>
-                <div id="mostrarNombre">Bienvenido al Usuario </div>
-            </div>
+  <div class="main">
+    <!-- header  -->
+    <header id="header" class="header">
+      <div class="logo"><img src="img/logo.png" /></div>
+      <a href="#Autos">Autos</a>
+      <a href="#info">Servicios</a>
+      <a href="#slider">Galería</a>
+      <a href="#contacto">Contacto</a>
+      <div class="iconCarrito">
+        <p>0</p>
+        <i class="fa fa-shopping-cart"></i>
+      </div>
+    </header>
 
-        </nav>
+    <!-- banner  -->
+    <div class="banner" style="opacity: 0.9;">
+      <div class="contBanner">
+        <h1>Consecionario Capullo</h1>
+        <p>
+          INTEGRA LA RED OFICIAL DE CONCESIONARIOS TOYOTA PARA SU LÍNEA DE AUTOMÓVILES, SUVS Y CAMIONETAS, OFRECIENDO PRODUCTOS PARA EMPRESAS Y PARTICULARES. EN SUS CONCESIONARIAS DE AUTOS APLICAN EL MISMO SECRETO QUE LOS HIZO GRANDES EN LA NÁUTICA: CALIDAD EN ATENCIÓN AL CLIENTE.
+        </p>
+        <a href="#">Conocenos</a>
+      </div>
     </div>
-    <div class="row container-fluid">
-        <div class="col-lg-4"></div>
-        <div id="demo" class="col-lg-4 my-5 text-center"><h4><strong>Ver Ofertas</strong></h4> </div>
-        <div class="col-lg-4"></div>
+
+    <!-- texto comienzo -->
+    <div class="servicios" id="Autos"></div>
+
+    <!-- items  -->
+    <div class="itemsCaja">
+      <div id="productosContenedor"></div>
     </div>
+  </div>
+  </div>
 
-    <div class="row conainer">
-        <div class="col-lg-1"></div>
-        <div id="productosContenedor" class="col-lg-9"></div>
-        <div class="col-lg-1"></div>
+  <!-- CARRITO  -->
+  <div class="cajaCarrito">
+    <div class="carrito">
+      <i class="fa fa-close"></i>
+      <h1>Carrito de compras</h1>
+      <table></table>
+      <div class="divTotal">
+        <p>TOTAL:</p>
+        <div id="total"></div>
+      </div>
+      <button class="comprar">COMPRAR</button>
+      <p id="ajax"></p>
     </div>
+  </div>
 
+  <!-- mas informacion sobre los servicios  -->
+  <div class="contenido" id="info">
+    <button id="mostrar">Más información</button>
+    <button id="ocultar">x</button>
+    <div id="contenedorAbajo">
+      <p>Toyota es una marca llena de historia y una de las empresas fabricantes de vehículos más grandes de Japón, que ha marcado el desarrollo del mercado automovilístico. Sin dudas, goza de la confianza, aceptación, liderazgo y fiabilidad de millones de usuarios en todo el mundo.
 
+        La historia de Toyota demuestra que a pesar de no estar enfocada al mercado automovilístico, esta marca supo trazar estrategias eficaces para conseguir sus objetivos y expandirse desde Japón hasta todos los rincones del mundo, siendo un ejemplo a seguir para muchas otras marcas.</p>
+    </div>
+  </div>
 
+  <!-- slider  -->
+  <div id="slider">
+    <h2>Galeria</h2>
+    <figure>
+      <img src="img/2.jpg" />
+      <img src="img/1 (2).jpg" />
+      <img src="img/4.png" />
+      <img src="img/3.png" />
+      <img src="img/5.jpg" />
+    </figure>
 
+    <button class="btn-prev"><i class="fa fa-arrow-left"></i></button>
+    <button class="btn-next"><i class="fa fa-arrow-right"></i></button>
+  </div>
 
+  <!-- animacion concatenada  -->
+  <div class="contenedorverMas" id="contacto">
+    <h3 id="verMas">¿NECESITAS CONTACTARTE?</h3>
+    <div class="contenidoverMas">
+      <p>
+        Envíanos un correo a <span><a href="mailto:capulloconsecionaria@correo.com">capulloconsecionaria@gmail.com</a></span> para
+        más
+        información
+      </p>
+    </div>
+  </div>
 
+  <!-- footer  -->
+  <footer>
+    <p>Capullo Consecionaria</p>
+  </footer>
 
+  <!-- JQUERY  -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- Jquery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <!-- JS -->
-    <script src="/index.js"></script>
+  <!-- SCRIPTS JS  -->
+  <script src="index.js"></script>
 </body>
 
 </html>

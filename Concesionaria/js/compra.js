@@ -95,3 +95,7 @@ function procesarCompra() {
     }
 }
 
+function compraRealizada() {
+    alert("Se realizo la compra con exito! Muchas Gracias!")
+    
+}

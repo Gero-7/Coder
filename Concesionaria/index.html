@@ -1,118 +1,243 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-  <meta charset="utf-8" />
-  <title>Consecionaria Capullo</title>
-  <!-- FAVICON  -->
-  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-  <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-  <!-- LINK CSS  -->
-  <link rel="stylesheet" href="index.css" />
-  <!-- FONT AWESOME -->
-  <link rel="stylesheet" type="text/css"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/popper.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="icon" href="../Carrito-Compras-JavaScript-0.0.0/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <link rel="stylesheet" href="../Carrito-Compras-JavaScript-0.0.0/css/estilo.css">
+
+    <title>Capullo Consecionario</title>
 </head>
 
 <body>
-  <div class="main">
-    <!-- header  -->
-    <header id="header" class="header">
-      <div class="logo"><img src="img/logo.png" /></div>
-      <a href="#Autos">Autos</a>
-      <a href="#info">Servicios</a>
-      <a href="#slider">Galería</a>
-      <a href="#contacto">Contacto</a>
-      <div class="iconCarrito">
-        <p>0</p>
-        <i class="fa fa-shopping-cart"></i>
-      </div>
+
+    <header>
+        <div class="container">
+            <div class="row align-items-stretch justify-content-between">
+                <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                    <img src="../Carrito-Compras-JavaScript-0.0.0/img/favicon.ico" style="height:120px ; margin-left: 20px;" alt="">
+                    <a class="navbar-brand" href="#"><h4>Capullo Consecionario</h4></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <br>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item dropdown">
+                                <img src="img/cart.jpeg" class="nav-link dropdown-toggle img-fluid" height="70px"
+                                    width="70px" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false"></img>
+                                <div id="carrito" class="dropdown-menu" aria-labelledby="navbarCollapse">
+                                    <table id="lista-carrito" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Imagen</th>
+                                                <th>Nombre</th>
+                                                <th>Precio</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+
+                                    <a href="#" id="vaciar-carrito" class="btn btn-primary btn-block">Vaciar Carrito</a>
+                                    <a href="#" id="procesar-pedido" class="btn btn-danger btn-block">Procesar
+                                        Compra</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
     </header>
 
-    <!-- banner  -->
-    <div class="banner" style="opacity: 0.9;">
-      <div class="contBanner">
-        <h1>Consecionario Capullo</h1>
-        <p>
-          INTEGRA LA RED OFICIAL DE CONCESIONARIOS TOYOTA PARA SU LÍNEA DE AUTOMÓVILES, SUVS Y CAMIONETAS, OFRECIENDO PRODUCTOS PARA EMPRESAS Y PARTICULARES. EN SUS CONCESIONARIAS DE AUTOS APLICAN EL MISMO SECRETO QUE LOS HIZO GRANDES EN LA NÁUTICA: CALIDAD EN ATENCIÓN AL CLIENTE.
-        </p>
-        <a href="#">Conocenos</a>
-      </div>
-    </div>
+    <main>
+        <div class="banner" style="opacity: 0.8;">
+            <div class="contBanner">
+                <h1>Consecionario Capullo</h1>
+                <p>
+                    INTEGRA LA RED OFICIAL DE CONCESIONARIOS TOYOTA PARA SU LÍNEA DE AUTOMÓVILES, SUVS Y CAMIONETAS,
+                    OFRECIENDO
+                    PRODUCTOS PARA EMPRESAS Y PARTICULARES. EN SUS CONCESIONARIAS DE AUTOS APLICAN EL MISMO SECRETO QUE
+                    LOS HIZO
+                    GRANDES EN LA NÁUTICA: CALIDAD EN ATENCIÓN AL CLIENTE.
+                </p>
+                <a href="#">Conocenos</a>
+            </div>
+        </div>
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 my-4 mx-auto text-center">
+            <h1 class="display-4 mt-4">Lista de Autos</h1>
+            <p class="lead">Selecciona uno de nuestros autos y accede a un descuento</p>
+        </div>
 
-    <!-- texto comienzo -->
-    <div class="servicios" id="Autos"></div>
+        <div class="container" id="lista-productos">
 
-    <!-- items  -->
-    <div class="itemsCaja">
-      <div id="productosContenedor"></div>
-    </div>
-  </div>
-  </div>
+            <div class="card-deck mb-3 text-center">
 
-  <!-- CARRITO  -->
-  <div class="cajaCarrito">
-    <div class="carrito">
-      <i class="fa fa-close"></i>
-      <h1>Carrito de compras</h1>
-      <table></table>
-      <div class="divTotal">
-        <p>TOTAL:</p>
-        <div id="total"></div>
-      </div>
-      <button class="comprar">COMPRAR</button>
-      <p id="ajax"></p>
-    </div>
-  </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-bold">FORD FIESTA</h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="https://noticias.coches.com/wp-content/uploads/2014/07/ford_fiesta-5-door-2013_r5.jpg"
+                            class="card-img-top">
+                        <h1 class="card-title pricing-card-title precio">$<span class="">150000</span></h1>
 
-  <!-- mas informacion sobre los servicios  -->
-  <div class="contenido" id="info">
-    <button id="mostrar">Más información</button>
-    <button id="ocultar">x</button>
-    <div id="contenedorAbajo">
-      <p>Toyota es una marca llena de historia y una de las empresas fabricantes de vehículos más grandes de Japón, que ha marcado el desarrollo del mercado automovilístico. Sin dudas, goza de la confianza, aceptación, liderazgo y fiabilidad de millones de usuarios en todo el mundo.
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li></li>
+                            <li>KM: 200</li>
+                            <li>COLOR: AZUL</li>
+                            <li>AÑO: 2019</li>
+                        </ul>
+                        <a href="" class="btn btn-block btn-primary agregar-carrito" data-id="1">Comprar</a>
+                    </div>
+                </div>
 
-        La historia de Toyota demuestra que a pesar de no estar enfocada al mercado automovilístico, esta marca supo trazar estrategias eficaces para conseguir sus objetivos y expandirse desde Japón hasta todos los rincones del mundo, siendo un ejemplo a seguir para muchas otras marcas.</p>
-    </div>
-  </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-bold">TOYOTA COROLLA </h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="https://demotores.pxcrush.net/cars/dealer/d8sugzpuabb8qa9pmiayu7qfn.jpg?pxc_method=gravityfill&pxc_bgtype=self&pxc_size=720,480"
+                            class="card-img-top">
+                        <h1 class="card-title pricing-card-title precio">$<span class="">100000</span></h1>
 
-  <!-- slider  -->
-  <div id="slider">
-    <h2>Galeria</h2>
-    <figure>
-      <img src="img/2.jpg" />
-      <img src="img/1 (2).jpg" />
-      <img src="img/4.png" />
-      <img src="img/3.png" />
-      <img src="img/5.jpg" />
-    </figure>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li></li>
+                            <li>KM: 0</li>
+                            <li>COLOR: BLANCO</li>
+                            <li>AÑO: 2020</li>
+                        </ul>
+                        <a href="" class="btn btn-block btn-primary agregar-carrito" data-id="2">Comprar</a>
+                    </div>
+                </div>
 
-    <button class="btn-prev"><i class="fa fa-arrow-left"></i></button>
-    <button class="btn-next"><i class="fa fa-arrow-right"></i></button>
-  </div>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-bold">FORD FIESTA</h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="https://noticias.coches.com/wp-content/uploads/2014/07/ford_fiesta-5-door-2013_r5.jpg"
+                            class="card-img-top">
+                        <h1 class="card-title pricing-card-title precio">$<span class="">150000</span></h1>
 
-  <!-- animacion concatenada  -->
-  <div class="contenedorverMas" id="contacto">
-    <h3 id="verMas">¿NECESITAS CONTACTARTE?</h3>
-    <div class="contenidoverMas">
-      <p>
-        Envíanos un correo a <span><a href="mailto:capulloconsecionaria@correo.com">capulloconsecionaria@gmail.com</a></span> para
-        más
-        información
-      </p>
-    </div>
-  </div>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li></li>
+                            <li>KM: 200</li>
+                            <li>COLOR: AZUL</li>
+                            <li>AÑO: 2019</li>
+                        </ul>
+                        <a href="" class="btn btn-block btn-primary agregar-carrito" data-id="1">Comprar</a>
+                    </div>
+                </div>
 
-  <!-- footer  -->
-  <footer>
-    <p>Capullo Consecionaria</p>
-  </footer>
+            </div>
 
-  <!-- JQUERY  -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <div class="card-deck mb-3 text-center">
 
-  <!-- SCRIPTS JS  -->
-  <script src="index.js"></script>
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-bold">TOYOTA COROLLA </h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="https://demotores.pxcrush.net/cars/dealer/d8sugzpuabb8qa9pmiayu7qfn.jpg?pxc_method=gravityfill&pxc_bgtype=self&pxc_size=720,480"
+                            class="card-img-top">
+                        <h1 class="card-title pricing-card-title precio">$<span class="">100000</span></h1>
+
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li></li>
+                            <li>KM: 0</li>
+                            <li>COLOR: BLANCO</li>
+                            <li>AÑO: 2020</li>
+                        </ul>
+                        <a href="" class="btn btn-block btn-primary agregar-carrito" data-id="2">Comprar</a>
+                    </div>
+                </div>
+
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-bold">FORD FIESTA</h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="https://noticias.coches.com/wp-content/uploads/2014/07/ford_fiesta-5-door-2013_r5.jpg"
+                            class="card-img-top">
+                        <h1 class="card-title pricing-card-title precio">$<span class="">150000</span></h1>
+
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li></li>
+                            <li>KM: 200</li>
+                            <li>COLOR: AZUL</li>
+                            <li>AÑO: 2019</li>
+                        </ul>
+                        <a href="" class="btn btn-block btn-primary agregar-carrito" data-id="1">Comprar</a>
+                    </div>
+                </div>
+
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header">
+                        <h4 class="my-0 font-weight-bold">TOYOTA COROLLA </h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="https://demotores.pxcrush.net/cars/dealer/d8sugzpuabb8qa9pmiayu7qfn.jpg?pxc_method=gravityfill&pxc_bgtype=self&pxc_size=720,480"
+                            class="card-img-top">
+                        <h1 class="card-title pricing-card-title precio">$<span class="">100000</span></h1>
+
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li></li>
+                            <li>KM: 0</li>
+                            <li>COLOR: BLANCO</li>
+                            <li>AÑO: 2020</li>
+                        </ul>
+                        <a href="" class="btn btn-block btn-primary agregar-carrito" data-id="2">Comprar</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+        <div id="slider">
+            <h2>Galeria</h2>
+        
+            <figure>
+              <img src="img/2.jpg" />
+              <img src="img/1 (2).jpg" />
+              <img src="img/4.png" />
+              <img src="img/3.png" />
+              <img src="img/5.jpg" />
+        
+            </figure>
+        
+            <button class="btn-prev"><i class="fa fa-arrow-left"></i></button>
+            <button class="btn-next"><i class="fa fa-arrow-right"></i></button>
+          </div>
+        
+    </main>
+    <!-- footer  -->
+    <footer>
+        <center>
+          <p>Capullo Consecionaria</p>
+        </center>
+      </footer>
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sweetalert2.min.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/pedido.js"></script>
+    <script src="js/index.js"></script>
+
 </body>
 
 </html>
